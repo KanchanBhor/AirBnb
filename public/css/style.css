@@ -266,3 +266,18 @@ width:80vp;
   font-size: 1rem;
 }
 
+
+/* options anchor tag */
+.filter,
+.filter i,
+.filter p {
+    color: black;
+    text-decoration: none;
+}
+
+.filter:hover,
+.filter:hover i,
+.filter:hover p {
+    color: black;
+    text-decoration: none;
+}

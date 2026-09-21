@@ -10,6 +10,18 @@ const multer=require("multer");
 const { storage }=require("../cloudConfig.js");
 const upload=multer({storage});
 
+ //search route 
+ router.get("/search", async (req, res) => {
+  let { category } = req.query;
+
+  let allListings = await Listing.find({
+      category: { $regex: category, $options: "i" }
+  });
+
+  res.render("listings/index.ejs", { allListings });
+});
+
+
 router
 .route("/")
 .get( wrapAsync (listingController.index))
@@ -43,6 +55,8 @@ router
   router.get("/:id/edit", 
   isLoggedIn, isOwner,
   wrapAsync (listingController.renderEditForm));
+
+ 
   
 module.exports=router;
 

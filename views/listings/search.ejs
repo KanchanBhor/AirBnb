@@ -1,0 +1,31 @@
+<% layout("/layouts/boilerplate") %>
+
+<h3 class="mb-4">Listings for <%= category %></h3>
+
+<div class="row">
+    <% if(allListings.length === 0) { %>
+        <p>No listings found for <%= category %>.</p>
+    <% } %>
+
+    <% for(let listing of allListings) { %>
+        <div class="card col-md-3 mb-4 ms-3">
+            <img src="<%= listing.image.url %>" class="card-img-top" style="height: 200px; object-fit: cover;">
+
+            <div class="card-body">
+                <h5 class="card-title"><%= listing.title %></h5>
+
+                <span class="badge bg-dark">
+                    <%= listing.category %>
+                </span>
+
+                <p class="card-text mt-2">
+                    ₹ <%= listing.price.toLocaleString("en-IN") %>
+                </p>
+
+                <a href="/listings/<%= listing._id %>" class="btn btn-outline-dark">
+                    View
+                </a>
+            </div>
+        </div>
+    <% } %>
+</div>

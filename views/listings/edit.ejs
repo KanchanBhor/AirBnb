@@ -71,6 +71,24 @@
             class="form-control" required>
             <div class="invalid-feedback">Plese enter Location!</div>
     </div>
+    <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="listing[category]" id="category" class="form-select" required>
+            <option value="">Select a category</option>
+            <option value="Mountains" <%= listing.category === "Mountains" ? "selected" : "" %>>🏔️ Mountains</option>
+            <option value="Deserts" <%= listing.category === "Deserts" ? "selected" : "" %>>🏜️ Deserts</option>
+            <option value="Iconic Cities" <%= listing.category === "Iconic Cities" ? "selected" : "" %>>🏙️ Iconic Cities</option>
+            <option value="Farms" <%= listing.category === "Farms" ? "selected" : "" %>>🌾 Farms</option>
+            <option value="Arctic" <%= listing.category === "Arctic" ? "selected" : "" %>>❄️ Arctic</option>
+            <option value="Beaches" <%= listing.category === "Beaches" ? "selected" : "" %>>🏖️ Beaches</option>
+            <option value="Forests" <%= listing.category === "Forests" ? "selected" : "" %>>🌲 Forests</option>
+            <option value="Islands" <%= listing.category === "Islands" ? "selected" : "" %>>🏝️ Islands</option>
+            <option value="Camping" <%= listing.category === "Camping" ? "selected" : "" %>>🏕️ Camping</option>
+            <option value="Castles" <%= listing.category === "Castles" ? "selected" : "" %>>🏰 Castles</option>
+            <option value="Countryside" <%= listing.category === "Countryside" ? "selected" : "" %>>🌳 Countryside</option>
+            <option value="Historical" <%= listing.category === "Historical" ? "selected" : "" %>>🏛️ Historical</option>
+        </select>
+    </div>
 
     <button class="btn btn-dark edit-btn mt-3">Edit</button>
     
