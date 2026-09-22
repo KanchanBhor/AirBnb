@@ -73,7 +73,14 @@
 
 </div>
 
+<% if(allListings.length === 0) { %>
 
+  <div class="text-center mt-5">
+    <h3>No listings found 😔</h3>
+    <p>Try searching for another destination.</p>
+  </div>
+
+<% } else { %>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
 
   <% for(let list of allListings) { %>
@@ -103,9 +110,17 @@
             <i class="tax-info">
               &nbsp; &nbsp;+18% GST
             </i>
-
+             
           </p>
+          <% if(list.averageRating) { %>
+            <p class="mb-0">
+              <span class="text-warning">★</span>
+              <b><%= list.averageRating %></b>
+              <span class="text-muted">(<%= list.reviews.length %>)</span>
+            </p>
+          <% } %>
 
+            
         </div>
 
       </div>
@@ -115,7 +130,7 @@
   <% } %>
 
 </div>
-
+<% } %>
 
 <script>
 

@@ -1,0 +1,68 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-4 mb-2">
+  <h2 class="mb-4">My Bookings 📅</h2>
+
+  <% if(bookings.length === 0) { %>
+    <div class="text-center mt-5">
+      <h4>No bookings yet 😔</h4>
+      <p class="text-muted">Book a place and your trips will appear here.</p>
+      <a href="/listings" class="btn btn-dark rounded-pill px-4">
+        Explore Listings
+      </a>
+    </div>
+  <% } else { %>
+
+    <div class="row g-4">
+      <% for(let booking of bookings) { %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+
+            <img
+              src="<%= booking.listing.image.url %>"
+              class="card-img-top"
+              style="height:220px; object-fit:cover;"
+              alt="listing image"
+            >
+
+            <div class="card-body">
+              <h5 class="fw-semibold"><%= booking.listing.title %></h5>
+
+              <p class="text-muted mb-2">
+                📍 <%= booking.listing.location %>
+              </p>
+
+              <p class="mb-1">
+                <b>Check-in:</b>
+                <%= new Date(booking.checkIn).toLocaleDateString("en-IN") %>
+              </p>
+
+              <p class="mb-1">
+                <b>Check-out:</b>
+                <%= new Date(booking.checkOut).toLocaleDateString("en-IN") %>
+              </p>
+
+              <p class="mb-1">
+                <b>Guests:</b> <%= booking.guests %>
+              </p>
+
+              <p class="mb-3">
+                <b>Total:</b>
+                ₹<%=( booking.totalPrice || 0).toLocaleString("en-IN") %>
+              </p>
+
+              <a
+                href="/listings/<%= booking.listing._id %>"
+                class="btn btn-dark rounded-pill px-4"
+              >
+                View Listing
+              </a>
+            </div>
+
+          </div>
+        </div>
+      <% } %>
+    </div>
+
+  <% } %>
+</div>

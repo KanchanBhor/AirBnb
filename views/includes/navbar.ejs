@@ -15,17 +15,22 @@
         <a class="nav-link" href="/listings">Explore</a>
       </div>
 
-      <div class="navbar-nav ms-auto">
-        <form class="d-flex" action="/listings/search" method="GET" role="search">
-          <input class="form-control me-2 search-inp" name="category" type="search" placeholder="Search Destination" >
-          <button class="btn search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i> Search
-          </button>
-        </form>
-      </div>
+      <form class="d-flex mx-lg-auto my-3 my-lg-0" action="/listings" method="GET" role="search">
+        <input
+          class="form-control me-2 search-inp"
+          name="search"
+          type="search"
+          placeholder="Search Destination">
 
-      <div class="navbar-nav ms-auto">
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Search
+        </button>
+      </form>
+
+      <div class="navbar-nav ms-lg-auto">
         <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <a class="nav-link" href="/wishlist">❤️ Wishlist</a>
 
         <% if(!currUser) { %>
           <a class="nav-link" href="/signup"><b>SignUp</b></a>
@@ -33,6 +38,7 @@
         <% } %>
 
         <% if(currUser) { %>
+          <a class="nav-link" href="/bookings">📅 My Bookings</a>
           <a class="nav-link" href="/logout">Log out</a>
         <% } %>
       </div>

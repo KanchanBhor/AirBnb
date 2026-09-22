@@ -6,13 +6,34 @@ const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
 // INDEX
 module.exports.index = async (req, res) => {
-  const {category}=req.query;
-  let allListings;
-  if(category){
-    allListings= await Listing.find({category});
-  }else{
-    allListings=await Listing.find({});
+
+  const { category, search } = req.query;
+
+  let filter = {};
+
+  if (search) {
+    filter.$or = [
+      { title: { $regex: search, $options: "i" } },
+      { location: { $regex: search, $options: "i" } },
+      { country: { $regex: search, $options: "i" } }
+    ];
   }
+
+  if (category) {
+    filter.category = category;
+  }
+
+  const allListings = await Listing.find(filter).populate("reviews");
+
+  for (let listing of allListings) {
+    let ratings = listing.reviews.map(review => Number(review.rating));
+    let totalRating = ratings.reduce((sum, rating) => sum + rating, 0);
+  
+    listing.averageRating = ratings.length > 0
+      ? (totalRating / ratings.length).toFixed(1)
+      : null;
+  }
+
   res.render("listings/index.ejs", { allListings });
 };
 
@@ -28,9 +49,7 @@ module.exports.showListing = async (req, res) => {
   const listing = await Listing.findById(id)
     .populate({
       path: "reviews",
-      populate: {
-        path: "author"
-      }
+      populate: { path: "author" }
     })
     .populate("owner");
 
@@ -39,8 +58,20 @@ module.exports.showListing = async (req, res) => {
     return res.redirect("/listings");
   }
 
+  const ratings = listing.reviews
+    .map(review => Number(review.rating))
+    .filter(rating => Number.isFinite(rating));
+
+  const totalRating = ratings.reduce((sum, rating) => sum + rating, 0);
+
+  const averageRating = ratings.length > 0
+    ? (totalRating / ratings.length).toFixed(1)
+    : 0;
+
+
   res.render("listings/show.ejs", {
     listing,
+    averageRating,
     mapToken: process.env.MAP_TOKEN
   });
 };

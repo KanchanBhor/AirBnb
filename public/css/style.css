@@ -141,101 +141,99 @@ width:80vp;
 
 /* navbar downside options */
 
-.filter{
-  margin-top: 2rem;
-  text-align: center;
-  margin-right: 2rem;
-  opacity: 0.7;
-}
-#filters{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
+.filter{ 
+  margin-top: 2rem; 
+  text-align: center; 
+  margin-right: 2rem; 
+  opacity: 0.7; 
+} 
 
-.filter:hover{
-  opacity: 1;
-  cursor: pointer;
-}
+#filters{ 
+  display: flex; 
+  flex-wrap: wrap; 
+  align-items: center; 
+} 
+ 
+.filter:hover{ 
+  opacity: 1; 
+  cursor: pointer; 
+} 
+ 
+.filter p{ 
+  font-size: 0.8rem; 
+} 
 
-.filter p{
-  font-size: 0.8rem;
-}
 
 /* DESKTOP */
-@media (min-width: 992px) {
-  #filters {
-    justify-content: center;
-  }
 
-  .filter-row {
-    justify-content: center;
-  }
+@media (min-width: 992px) { 
+  #filters { 
+    justify-content: center; 
+  } 
 }
+
 
 /* TABLET */
-@media (max-width: 991px) {
-  #filters {
-    gap: 1.5rem;
+
+@media (max-width: 991px) { 
+  #filters { 
+    gap: 1.5rem; 
+  } 
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) { 
+
+  #filters { 
+    display: flex; 
+    
+    /* CHANGE: keep everything in one row */
+    flex-wrap: nowrap;
+
+    /* ADD: horizontal swipe */
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    /* ADD: don't show scrollbar */
+    scrollbar-width: none;
+
+    /* ADD: keep categories in one line */
+    white-space: nowrap;
+  } 
+
+  /* Chrome / Edge / Safari */
+  #filters::-webkit-scrollbar {
+    display: none;
   }
 
+  /* CHANGE: don't allow categories to shrink */
   .filter {
-    min-width: 65px;
+    flex-shrink: 0;
   }
 
+  /* CHANGE: don't allow tax toggle to shrink */
   .tax-toggle {
-    margin-left: 0.5rem;
+    flex-shrink: 0;
   }
+
+} 
+
+
+.tax-info{ 
+  display: none; 
+} 
+
+.tax-toggle{ 
+   border: 1px solid black; 
+   border-radius:1rem ; 
+   height:2.5rem; 
+   padding: 1rem; 
+   margin-left: 2rem; 
+   display: flex; 
+   align-items: center; 
 }
-
-/* MOBILE */
-@media (max-width: 600px) {
-  #filters {
-    justify-content: flex-start;
-    gap: 1.2rem;
-    padding: 0.8rem 0;
-  }
-
-  .filter {
-    min-width: 60px;
-  }
-
-  .filter i {
-    font-size: 1.2rem;
-  }
-
-  .filter p {
-    font-size: 0.75rem;
-  }
-
-  .filter-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .tax-toggle {
-    width: fit-content;
-    margin: 0.5rem auto;
-    font-size: 0.85rem;
-  }
-}
-
-
-
-.tax-info{
-  display: none;
-}
-
-.tax-toggle{
-   border: 1px solid black;
-   border-radius:1rem ;
-   height:2.5rem;
-   padding: 1rem;
-   margin-left: 2rem;
-   display: flex;
-   align-items: center;
-}
-
 
 /* Search buttotn styling */
 
@@ -280,4 +278,46 @@ width:80vp;
 .filter:hover p {
     color: black;
     text-decoration: none;
+}
+
+
+/* navbar */
+@media (max-width: 991px) {
+  .navbar {
+    height: auto !important;
+  }
+
+  .navbar-collapse {
+    position: static !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 1rem 0;
+  }
+
+  .navbar-collapse.show {
+    display: block !important;
+  }
+
+  .navbar-nav {
+    position: static !important;
+    width: 100%;
+    height: auto !important;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.6rem 0;
+  }
+
+  .navbar-collapse form {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .search-inp {
+    flex: 1;
+  }
+
+  .search-btn {
+    white-space: nowrap;
+  }
 }
