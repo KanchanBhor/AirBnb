@@ -21,28 +21,25 @@ const userRouter = require("./Routes/user.js");
 
 
 // ================= DATABASE =================
-
 const dbUrl = process.env.ATLASDB_URL;
 
 async function main() {
   await mongoose.connect(dbUrl, {
     dbName: "wonderlust"
   });
-
   console.log("connected to DB");
 }
-
 main()
   .then(() => {
-    app.listen(8080, () => {
-      console.log("Server is listening to port 8080");
+    const PORT = process.env.PORT || 8080;
+    app.listen(PORT, () => {
+      console.log(`Server is listening to port ${PORT}`);
     });
   })
   .catch((err) => {
     console.log("MongoDB connection failed:");
     console.log(err);
   });
-
 
 // ================= EJS =================
 
