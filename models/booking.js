@@ -23,7 +23,11 @@ const bookingSchema= new mongoose.Schema({
     guests:{
         type:Number,
         required:true
-    }
+    },
+    totalPrice: {
+        type: Number,
+        required: true
+      }
 },{timestamps:true});
 
 module.exports=mongoose.model("Booking",bookingSchema);
